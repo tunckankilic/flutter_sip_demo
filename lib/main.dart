@@ -3,8 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sip_demo/screens/home_screen.dart';
 import 'package:flutter_sip_demo/screens/login_screen.dart';
-import 'package:flutter_sip_demo/service/auth_provider.dart';
-import 'package:flutter_sip_demo/service/sip_provider.dart';
+import 'package:flutter_sip_demo/providers/auth_provider.dart';
+import 'package:flutter_sip_demo/providers/sip_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

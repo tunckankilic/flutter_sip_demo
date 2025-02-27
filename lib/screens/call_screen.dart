@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_sip_demo/call_screen_listener.dart';
-import 'package:flutter_sip_demo/service/sip_provider.dart';
+import 'package:flutter_sip_demo/listeners/call_screen_listener.dart';
+import 'package:flutter_sip_demo/providers/sip_provider.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:provider/provider.dart';
 import 'package:sip_ua/sip_ua.dart';

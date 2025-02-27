@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sip_demo/screens/call_screen.dart';
-import 'package:flutter_sip_demo/service/auth_provider.dart';
-import 'package:flutter_sip_demo/service/sip_provider.dart';
-import 'package:flutter_sip_demo/sip_ua_listener.dart';
+import 'package:flutter_sip_demo/providers/auth_provider.dart';
+import 'package:flutter_sip_demo/providers/sip_provider.dart';
+import 'package:flutter_sip_demo/listeners/sip_ua_listener.dart';
 import 'package:provider/provider.dart';
 import 'package:sip_ua/sip_ua.dart';
 
