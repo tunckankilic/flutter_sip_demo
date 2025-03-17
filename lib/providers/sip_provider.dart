@@ -122,7 +122,7 @@ class SipProvider with ChangeNotifier {
   }) async {
     if (_helper.connected && _registered) {
       final destination = 'sip:$targetSipUsername@127.0.0.1';
-      return await _helper.call(destination, voiceonly: voiceOnly);
+      return await _helper.call(destination, voiceOnly: voiceOnly);
     }
     return false;
   }
@@ -164,12 +164,11 @@ class _SipListener implements SipUaHelperListener {
   }
 
   @override
-  void onNewMessage(SIPMessageRequest msg) {
-    // Bu örnekte kullanılmıyor
-  }
+  void onNewMessage(SIPMessageRequest msg) {}
 
   @override
-  void onNewNotify(Notify ntf) {
-    // Bu örnekte kullanılmıyor
-  }
+  void onNewNotify(Notify ntf) {}
+
+  @override
+  void onNewReinvite(ReInvite event) {}
 }
