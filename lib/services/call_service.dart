@@ -11,27 +11,33 @@ class CallService {
     String receiverName,
     String callType,
   ) async {
-    final User? currentUser = _auth.currentUser;
-    if (currentUser == null) return '';
+    try {
+      final User? currentUser = _auth.currentUser;
+      if (currentUser == null) {
+        throw Exception('Kullanıcı oturumu bulunamadı');
+      }
 
-    // Kullanıcı bilgilerini al
-    final callerDoc =
-        await _firestore.collection('users').doc(currentUser.uid).get();
-    final callerData = callerDoc.data();
-    final callerName = callerData?['name'] ?? 'Unknown User';
+      // Kullanıcı bilgilerini al
+      final callerDoc =
+          await _firestore.collection('users').doc(currentUser.uid).get();
+      final callerData = callerDoc.data();
+      final callerName = callerData?['name'] ?? 'Unknown User';
 
-    // Yeni arama kaydı oluştur
-    final callRef = await _firestore.collection('calls').add({
-      'callerId': currentUser.uid,
-      'callerName': callerName,
-      'receiverId': receiverId,
-      'receiverName': receiverName,
-      'startTime': FieldValue.serverTimestamp(),
-      'callType': callType, // 'audio' veya 'video'
-      'status': 'initiated', // başlangıç durumu
-    });
+      // Yeni arama kaydı oluştur
+      final callRef = await _firestore.collection('calls').add({
+        'callerId': currentUser.uid,
+        'callerName': callerName,
+        'receiverId': receiverId,
+        'receiverName': receiverName,
+        'startTime': FieldValue.serverTimestamp(),
+        'callType': callType, // 'audio' veya 'video'
+        'status': 'initiated', // başlangıç durumu
+      });
 
-    return callRef.id;
+      return callRef.id;
+    } catch (e) {
+      throw Exception('Arama kaydı oluşturulamadı: $e');
+    }
   }
 
   // Arama sonlandığında kaydı güncelle
@@ -40,16 +46,20 @@ class CallService {
     String status, {
     int? duration,
   }) async {
-    final Map<String, dynamic> updateData = {
-      'endTime': FieldValue.serverTimestamp(),
-      'status': status, // 'answered', 'missed', 'rejected'
-    };
+    try {
+      final Map<String, dynamic> updateData = {
+        'endTime': FieldValue.serverTimestamp(),
+        'status': status, // 'answered', 'missed', 'rejected'
+      };
 
-    if (duration != null) {
-      updateData['duration'] = duration;
+      if (duration != null) {
+        updateData['duration'] = duration;
+      }
+
+      await _firestore.collection('calls').doc(callId).update(updateData);
+    } catch (e) {
+      throw Exception('Arama kaydı güncellenemedi: $e');
     }
-
-    await _firestore.collection('calls').doc(callId).update(updateData);
   }
 
   // Kullanıcının arama geçmişini getir

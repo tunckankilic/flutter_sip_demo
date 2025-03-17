@@ -21,4 +21,7 @@ class MySipUaHelperListener implements SipUaHelperListener {
 
   @override
   void onNewNotify(Notify ntf) {}
+
+  @override
+  void onNewReinvite(ReInvite event) {}
 }

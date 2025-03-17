@@ -305,6 +305,11 @@ class _CallScreenState extends State<CallScreen> {
       }
     } catch (e) {
       debugPrint('İstatistik alma hatası: $e');
+      if (mounted) {
+        setState(() {
+          _stats = 'İstatistikler alınamadı: $e';
+        });
+      }
     }
   }
 

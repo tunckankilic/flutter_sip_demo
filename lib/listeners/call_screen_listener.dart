@@ -7,9 +7,7 @@ class CallScreenListener implements SipUaHelperListener {
   CallScreenListener({required this.callId, required this.onCallStateChanged});
 
   @override
-  void registrationStateChanged(RegistrationState state) {
-    // Kullanılmıyor
-  }
+  void registrationStateChanged(RegistrationState state) {}
 
   @override
   void callStateChanged(Call call, CallState state) {
@@ -19,17 +17,14 @@ class CallScreenListener implements SipUaHelperListener {
   }
 
   @override
-  void transportStateChanged(TransportState state) {
-    // Kullanılmıyor
-  }
+  void transportStateChanged(TransportState state) {}
 
   @override
-  void onNewMessage(SIPMessageRequest msg) {
-    // Kullanılmıyor
-  }
+  void onNewMessage(SIPMessageRequest msg) {}
 
   @override
-  void onNewNotify(Notify ntf) {
-    // Kullanılmıyor
-  }
+  void onNewNotify(Notify ntf) {}
+
+  @override
+  void onNewReinvite(ReInvite event) {}
 }
